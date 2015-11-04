@@ -1,23 +1,32 @@
 #include <stdio.h>
 
 int main() {
-	int i, E, N, Nr, D;
+	int i, E, N;
+	int Nr[10], D[10];
 	FILE *fp_in, *fp_out;
-	fp_in = fopen("alo.in", "r");
-	E = fscanf(fp_in, "%d", &E);
-	N = fscanf(fp_in, "%d", &N);
+	fp_in = fopen ("alo.in", "r");
+	fp_out = fopen ("alo.out", "w");
 
-//	for (i = 0; i < N; i++) {
-		Nr = fscanf(fp_in, "%d", &Nr);
-		D = fscanf(fp_in, "%d", &D);
-		printf("%d", Nr);
-		printf("%d", D);
-		if (Nr % 10 == 5 && Nr/1000 == 2) {
-			E += D;
+	fscanf (fp_in, "%d", &E);
+	fscanf (fp_in, "%d", &N);
+
+	for (i = 0; i < N; ++i) {
+
+		scanf ("%d", &Nr[i]);
+		scanf ("%d", &D[i]);
+
+	}
+	for (i = 0; i < N; ++i) {
+		if (Nr[i] % 10 == 5 && Nr[i]/10000 == 2) {
+			E += D[i];
 		}
-		if (Nr % 10 == 5 && Nr/1000 == 1) {
-			E -= 2*D;
+		if (Nr[i] % 10 == 5 && Nr[i]/10000 == 1) {
+			E -= 2 * D[i];
 		}
-//	}
-	printf("%d\n", E);
+	}
+	fprintf (fp_out, "%d", E);
+
+	fclose(fp_in);
+	fclose(fp_out);
+	return 0;
 }
