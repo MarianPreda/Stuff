@@ -15,7 +15,7 @@ int main () {
         if (codes[i] % 10 == 2) {
             S += codes[i] / 10;
         } else
-            if (codes[i] % 10 == 3) {
+            if (codes[i] % 10 == 3 && codes[i] / 10 < S) {
                 S -= codes[i]/10;
             }
     }
