@@ -6,12 +6,13 @@ int main () {
 	fp_in = fopen ("robinson.in", "r");
 	fp_out = fopen ("robinson.out", "w");
 
-	int i, j, m, n, l, c;
+	int i, j, m, n, l, c, dir, *v;
 	fscanf (fp_in, "%d", &m);
 	fscanf (fp_in, "%d", &n);
 	fscanf (fp_in, "%d", &l);
 	fscanf (fp_in, "%d", &c);
 	int matrix[m][m];
+	v = malloc (m * m * sizeof(int));
 
 	for (j = 1; j <= m; ++j) {
 		matrix[1][j] = n + j -1;

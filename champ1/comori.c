@@ -8,7 +8,7 @@ int main() {
 		scanf("%d", &p);
 
 		if (d == 1) {
-			y =+ p;
+			y += p;
 		}
 		if (d == 2) {
 			x += p;
