@@ -6,14 +6,14 @@ int main () {
 	fp_in = fopen ("robinson.in", "r");
 	fp_out = fopen ("robinson.out", "w");
 
-	int i, j, k = 0, m, n, l, c, dir, *v;
+	int i, j, k = 0, m, n, l, c, dir, *C, *L;
 	fscanf (fp_in, "%d", &m);
 	fscanf (fp_in, "%d", &n);
 	fscanf (fp_in, "%d", &l);
 	fscanf (fp_in, "%d", &c);
 	int matrix[m][m];
-	v = malloc (2 * m * sizeof(int));
-
+	L = malloc (2 * m * sizeof(int));
+	C = malloc (2 * m * sizeof(int));
 	for (j = 1; j <= m; ++j) {
 		matrix[1][j] = n + j -1;
 	}
@@ -30,19 +30,25 @@ int main () {
 			}
 		}
 	}
+	for (i = 1; i <= m; i++) {
+		for (j = 1; j <=m; j++) {
+			printf ("%d ", matrix[i][j]);
+		}
+		printf ("\n");
+	}
 	i = l;
 	j = c;
 	int count = 0;
-	while (i > 0 || i < m || j > 0 || j > m) {
+	while (i >= 1 || i <= m || j >= 1 || j <= m) {
 		if (matrix[i][j] == 0)
 			break;
-		v[k] = i;
-		v[k + 1] = j;
-		k += 3;
-		count += 2;
+		L[k] = i;
+		C[k] = j;
+		k++;
+		count++;
 		if (matrix[i][j] % 4 == 0) {
 			matrix[i][j] = 0;
-			i++;
+			i--;
 		} else
 			if (matrix[i][j] % 4 == 1) {
 				matrix[i][j] = 0;
@@ -50,7 +56,7 @@ int main () {
 			} else
 				if (matrix[i][j] % 4 == 2) {
 					matrix[i][j] = 0;
-					i--;
+					i++;
 				} else
 					if (matrix[i][j] % 4 == 3) {
 						matrix[i][j] = 0;
@@ -60,7 +66,7 @@ int main () {
 
 	fprintf (fp_out, "%d\n", matrix[m][m]);
 	for (i = 0; i < count - 1; i++) {
-		fprintf (fp_out, "%d %d\n", v[i], v[i + 1]);
+		fprintf (fp_out, "%d %d\n", L[i], C[i]);
 	}
 	fclose(fp_in);
 	fclose(fp_out);
