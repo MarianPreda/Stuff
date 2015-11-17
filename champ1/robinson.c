@@ -6,14 +6,14 @@ int main () {
 	fp_in = fopen ("robinson.in", "r");
 	fp_out = fopen ("robinson.out", "w");
 
-	int i, j, k = 0, m, n, l, c, dir, *C, *L;
+	int i, j, k = 0, m, n, l, c, *C, *L;
 	fscanf (fp_in, "%d", &m);
 	fscanf (fp_in, "%d", &n);
 	fscanf (fp_in, "%d", &l);
 	fscanf (fp_in, "%d", &c);
 	int matrix[m][m];
-	L = malloc (2 * m * sizeof(int));
-	C = malloc (2 * m * sizeof(int));
+	L = malloc (m * sizeof(int));
+	C = malloc (m * sizeof(int));
 	for (j = 1; j <= m; ++j) {
 		matrix[1][j] = n + j -1;
 	}
@@ -30,12 +30,7 @@ int main () {
 			}
 		}
 	}
-	for (i = 1; i <= m; i++) {
-		for (j = 1; j <=m; j++) {
-			printf ("%d ", matrix[i][j]);
-		}
-		printf ("\n");
-	}
+	fprintf (fp_out, "%d\n", matrix[m][m]);
 	i = l;
 	j = c;
 	int count = 0;
@@ -63,11 +58,11 @@ int main () {
 						j--;
 					}
 	}
-
-	fprintf (fp_out, "%d\n", matrix[m][m]);
-	for (i = 0; i < count - 1; i++) {
+	for (i = 0; i < count; ++i) {
 		fprintf (fp_out, "%d %d\n", L[i], C[i]);
 	}
+	free(L);
+	free(C);
 	fclose(fp_in);
 	fclose(fp_out);
 	return 0;
