@@ -30,13 +30,7 @@ int main () {
 			}
 		}
 	}
-/*	for (i = 1; i <= m; ++i) {
-		for (j = 1; j <= m; j++) {
-			printf ("%d ", matrix[i][j]);
-		}
-		printf ("\n");
-	}
-	*/
+
 	fprintf (fp_out, "%d\n", matrix[m][m]);
 	i = l;
 	j = c;
