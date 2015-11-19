@@ -11,7 +11,7 @@ int main () {
 	fscanf (fp_in, "%d", &n);
 	fscanf (fp_in, "%d", &l);
 	fscanf (fp_in, "%d", &c);
-	int matrix[m][m];
+	int matrix[m + 1][m + 1];
 	L = malloc (m * sizeof(int));
 	C = malloc (m * sizeof(int));
 	for (j = 1; j <= m; ++j) {
@@ -23,18 +23,25 @@ int main () {
 	}
 
 	for (i = 2; i <= m; ++i) {
-		for (j = 2; j <=m; j++) {
+		for (j = 2; j <= m; j++) {
 			matrix[i][j] = matrix[i - 1][j] + matrix[i][j - 1];
 			if (matrix [i][j] > 999) {
 				matrix [i][j] = matrix[i][j] % 1000;
 			}
 		}
 	}
+/*	for (i = 1; i <= m; ++i) {
+		for (j = 1; j <= m; j++) {
+			printf ("%d ", matrix[i][j]);
+		}
+		printf ("\n");
+	}
+	*/
 	fprintf (fp_out, "%d\n", matrix[m][m]);
 	i = l;
 	j = c;
 	int count = 0;
-	while (i >= 1 || i <= m || j >= 1 || j <= m) {
+	while (i > 0 || i <= m || j > 0 || j <= m) {
 		if (matrix[i][j] == 0)
 			break;
 		L[k] = i;
