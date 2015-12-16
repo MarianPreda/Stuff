@@ -32,21 +32,11 @@ int main() {
 	}
 
 	for (i = 0; i < n; i++) {
-		printf ("%d ", subsidiar[i]);
-	}
-
-	for (i = 0; i < n - 1; ++i) {
-		for (j = 0; j < n - i - 1; ++j) {
-			if (x[i] < x[j] && y[i] > y[j]) {
-				aux = y[i];
-				y[i] = y[j];
-				y[j] = aux;
-			}
-		}
+		x[y[i] - 1] = i + 1;
 	}
 
 	for (i = 0; i < n; ++i) {
-		fprintf (fp_out, "%d ", y[i]);
+		fprintf (fp_out, "%d ", x[i]);
 	}
 	return 0;
 }
