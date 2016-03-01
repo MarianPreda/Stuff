@@ -1,11 +1,13 @@
 #include <stdio.h>
 
 int main() {
-    int i, x = 0, y = 0, d, p, N;
-	scanf ("%d", &N);
+	int i, x = 0, y = 0, d, p, N;
+	FILE *fp_in = fopen("comori.in", "r");
+	FILE *fp_out = fopen("comori.out", "w");
+	fscanf (fp_in, "%d", &N);
 	for (i = 0; i < N; ++i) {
-		scanf("%d", &d);
-		scanf("%d", &p);
+		fscanf(fp_in, "%d", &d);
+		fscanf(fp_in, "%d", &p);
 
 		if (d == 1) {
 			y += p;
@@ -36,6 +38,8 @@ int main() {
 			y += p;
 		}
 	}
-	printf ("%d %d", x, y);
+	fprintf (fp_out, "%d %d", x, y);
+	fclose(fp_in);
+	fclose(fp_out);
 	return 0;
 }
